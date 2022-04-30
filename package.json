@@ -9,10 +9,12 @@
     "moment": "^2.29.3",
     "react": "16.13.1",
     "react-big-calendar": "^0.40.1",
+    "react-datetime-picker": "^3.5.0",
     "react-dom": "16.13.1",
     "react-modal": "^3.15.1",
     "react-router-dom": "^5.3.0",
     "react-scripts": "3.4.1",
+    "sweetalert2": "^11.4.10",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
