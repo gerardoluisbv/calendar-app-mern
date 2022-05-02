@@ -58,7 +58,7 @@ html, body {
 
 /* DATAPICKER */
 
-.react-datetime-picker input:focus {
+.react-datetime-picker  {
     outline:none;
 }
 
@@ -71,9 +71,18 @@ html, body {
 .fab {
     border-radius: 100%;
     bottom: 25px;
-    font-size: 18px;
+
     padding:25px;
     position: fixed;
     right: 25px;
 
+}
+
+.fab-danger {
+
+    bottom: 25px;
+    padding:20px;
+    position: fixed;
+    right: 100px;
+    z-index: 999;
 }
