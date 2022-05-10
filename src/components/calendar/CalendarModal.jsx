@@ -5,7 +5,7 @@ import moment from "moment";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { uiCloseModal } from "../../actions/ui";
-import { eventAddNew, eventClearActiveEvent, eventUpadate } from "../../actions/events";
+import { eventClearActiveEvent, eventStartAddNew, eventStartUpdate } from "../../actions/events";
 
 
 
@@ -64,12 +64,16 @@ export const CalendarModal = () => {
       ...formValues,
       [target.name] : target.value
     })
-    console.log(formValues);
   }
 
   const closeModal = () => {
+    
     dispatch( uiCloseModal() );
-    dispatch( eventClearActiveEvent() );
+    
+    setTimeout(() => {  // retrasa para que no se vea el cambio de titulo antes de cerrar el modal Editar - Crear
+      dispatch( eventClearActiveEvent() );
+    }, 200);
+    
     setFormValues(initEvent);
    
   };
@@ -109,18 +113,11 @@ export const CalendarModal = () => {
     }
 
     if ( activeEvent ) {
-      dispatch( eventUpadate( formValues ) );
+      dispatch( eventStartUpdate( formValues ) );
     }
     else {
 
-        dispatch( eventAddNew({
-          ...formValues,
-          id: new Date().getTime(),
-          user: {
-            _id: "123",
-            name: "Gerardo"
-          }
-        }) );
+        dispatch( eventStartAddNew( formValues ) );
     }
         
 
@@ -140,7 +137,11 @@ export const CalendarModal = () => {
       className="modal"
       overlayClassName="modal-fondo"
     >
-      <h1> { (activeEvent) ? 'Editar Evento' : 'Nuevo evento' } </h1>
+      <h1> { 
+            (activeEvent) 
+              ? 'Editar Evento' 
+              : 'Nuevo evento' 
+          } </h1>
       <hr />
       <form 
         className="container"
